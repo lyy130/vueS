@@ -7,9 +7,9 @@ import { Header } from 'mint-ui';
 Vue.component(Header.name, Header);
 import 'mint-ui/lib/style.css' //注意，此处样式要单独引入。
 import mui from './assets/dist/js/mui.min.js'
-import './assets/dist/css/mui.min.css'
-import './assets/dist/css/icons-extra.css'
-Vue.prototype.mui = git remote rm origin
+import './assets/dist/css/mui.min.css' //注意，此处样式要单独引入。
+import './assets/dist/css/icons-extra.css' //注意，此处样式要单独引入。
+Vue.prototype.mui = mui
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
