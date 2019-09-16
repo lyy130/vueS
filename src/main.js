@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
+Vue.prototype.$axios = axios
 import { Header ,Swipe, SwipeItem } from 'mint-ui';
 Vue.component(Header.name, Header);
 Vue.component(Swipe.name, Swipe);
@@ -12,6 +14,8 @@ import 'mint-ui/lib/style.css' //注意，此处样式要单独引入。
 import './assets/dist/css/mui.min.css' //注意，此处样式要单独引入。
 import './assets/dist/css/icons-extra.css' //注意，此处样式要单独引入。
 // Vue.prototype.mui = mui
+
+// Vue.http.options.root = 'http://www.liulongbin.top:3005';
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
