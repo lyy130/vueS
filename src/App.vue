@@ -20,8 +20,8 @@
         <span class="mui-tab-label">搜索</span>
       </router-link>
     </nav>
-    <transition>
-      <router-view/>
+    <transition name="page" mode="out-in">
+      <router-view class="page"></router-view>
     </transition>
 
   </div>
@@ -42,7 +42,7 @@ export default {
   color: #2c3e50;
   margin-top: 40px;
   touch-action: pan-y;
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
 }
   .v-enter{
     opacity: 0;
@@ -56,4 +56,14 @@ export default {
   .v-enter-active,.v-leave-active{
     transition: all 0.5s ease;
   }
+.main, .page {
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  width: 100%;
+  margin: 0 auto;
+  /*overflow-y: auto;*/
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
 </style>

@@ -11,14 +11,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api':{
-        // target:'http://jsonplaceholder.typicode.com',
-        target:'http://vue.studyit.io',
-        changeOrigin:true,
 
-        pathRewrite:{
-          '/api':''
-        }
     },
 
     // Various Dev Server settings
