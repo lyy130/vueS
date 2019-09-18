@@ -7,11 +7,15 @@
     </p>
     <hr>
     <div class="content" v-html="newsinfo.content"></div>
+<!--    评论子组件-->
+    <comment-box :id="this.id"></comment-box>
   </div>
 </template>
 
 <script>
   import {Toast} from  'mint-ui'
+  //导入评论子组件
+  import comment from '../common/comment'
     export default {
         name: "newinfo",
       data(){
@@ -38,6 +42,9 @@
             }).catch(err => { //请求失败就会捕获报错信息//err.response可拿到服务器返回的报错数据
             })
           }
+      },
+      components:{
+          'comment-box':comment
       }
     }
 </script>

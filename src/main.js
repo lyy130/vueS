@@ -5,10 +5,11 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 Vue.prototype.$axios = axios
-import { Header ,Swipe, SwipeItem } from 'mint-ui';
+import { Header ,Swipe, SwipeItem, Button} from 'mint-ui';
 Vue.component(Header.name, Header);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Button.name, Button);
 
 /*设置公共的url*/
 import global_ from './components/base/base'

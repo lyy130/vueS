@@ -38,10 +38,10 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /*text-align: center;*/
   color: #2c3e50;
   margin-top: 40px;
-  margin-bottom: 50px;
+  margin-bottom: 55px;
   touch-action: pan-y;
   /*overflow-x: hidden;*/
 }
@@ -58,11 +58,11 @@ export default {
     transition: all 0.5s ease;
   }
 .main, .page {
-  position: absolute;
-  top: 40px;
-  bottom: 0;
+  /*position: absolute;*/
+  /*top: 40px;*/
+  /*bottom: 0;*/
   width: 100%;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
   /*overflow-y: auto;*/
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
