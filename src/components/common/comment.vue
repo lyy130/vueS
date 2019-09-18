@@ -1,8 +1,8 @@
 <template>
     <div>
       <h4>发表评论</h4>
-      <textarea  class="pinlun" name="" id="" cols="20" rows="10" placeholder="请输入要BB的内容(最多20个字)"></textarea>
-      <mt-button type="primary" size="large">发表评论</mt-button>
+      <textarea  class="pinlun" name="" id="" cols="20" rows="10" placeholder="请输入要BB的内容(最多20个字)" v-model="msg"></textarea>
+      <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
       <ul class="comment">
         <li v-for="(item,i) in comments" :key="item.add_time">
           <p>第{{i+1}}楼 用户：{{item.user_name}} 发表时间：{{item.add_time | dateFormat}}</p>
@@ -29,7 +29,7 @@
 <!--          <p>傻逼</p>-->
 <!--        </li>-->
       </ul>
-      <mt-button type="danger" size="large" plain>加载更多</mt-button>
+      <mt-button type="danger" size="large" plain @click="getMore">加载更多</mt-button>
     </div>
 
 </template>
@@ -41,7 +41,8 @@
       data(){
           return {
             pageIndex:1,    //默认展示第一页
-            comments:[]    //所有的评论数据
+            comments:[],    //所有的评论数据
+            msg:''
           };
       },
       created(){
@@ -52,12 +53,34 @@
             this.$axios.get("api/getcomments/" +this.id+ "?pageindex=" + this.pageIndex).then(res => {
               if(res.data.status === 0){
                 console.log(res)
-                this.comments = res.data.message
+                this.comments =   this.comments.concat( res.data.message)
+                console.log(this.comments)
               } else{
                 Toast("获取评论失败");
               }
             })
-          }
+          },   //获取评论
+          getMore(){
+              this.pageIndex++;
+              this.getComments();
+          },
+          //发表评论
+        postComment(){
+            //校验是否为空
+            if(this.msg.trim().length === 0) {
+              return Toast("评论不能为空")                                  /*--------------- 为啥return-------------------------------*/
+            }
+            this.$axios.post('api/postcomment/'+ this.$route.params.id,{
+              content:this.msg.trim()
+            }).then(res => {
+              if(res.data.status ===0) {
+                // 添加数据，先拼接出一个数据模板对象，再push 或者unshift
+                var cmt = {user_name:'匿名用户',add_time:Date.now(),content:this.msg.trim()};
+                this.comments.unshift(cmt);
+                this.msg = "";
+              }
+            })
+        }
       },
       props:["id"]
     }
@@ -71,6 +94,7 @@
   .comment{
     list-style: none;
     padding-left: 0;
+    margin-top: 6px;
     p{
       margin-bottom: 6px;
       &:first-of-type{
