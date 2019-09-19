@@ -7,6 +7,7 @@ import shopcar from '@/components/tabar/Shopcar'
 import search from '@/components/tabar/Search'
 import newslist from '@/components/news/newslist'
 import newinfo from '@/components/news/newinfo'
+import photolist from '@/components/photolist/photolist'
 
 // import home from '@/components/tabar/Home.vue'   /* 导入组件包*/
 
@@ -21,7 +22,8 @@ export default new Router({                     /* 创建路由对象，并将�
     {path: '/shopcar', name: 'shopcar', component: shopcar},
     {path: '/search', name: 'search', component: search},
     {path:'/home/newalist',component:newslist},
-    {path:'/home/newinfo/:id',component:newinfo}
+    {path:'/home/newinfo/:id',component:newinfo},
+    {path:'/home/photolist',component:photolist}
   ],
   linkActiveClass:'mui-active'  //覆盖默认的路由高亮的类
 })

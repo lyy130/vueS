@@ -10,6 +10,7 @@ Vue.component(Header.name, Header);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 Vue.component(Button.name, Button);
+import 'mint-ui/lib/style.css' //注意，此处样式要单独引入。
 
 /*设置公共的url*/
 import global_ from './components/base/base'
@@ -18,11 +19,16 @@ axios.defaults.baseURL=global_.BASE_URL;
 Vue.prototype.$ajax = axios;
 
 //mui的引入
-import 'mint-ui/lib/style.css' //注意，此处样式要单独引入。
 // import mui from './assets/dist/js/mui.min.js'
 import './assets/dist/css/mui.min.css' //注意，此处样式要单独引入。
 import './assets/dist/css/icons-extra.css' //注意，此处样式要单独引入。
 // Vue.prototype.mui = mui
+
+//vant引入
+import { Tabs, Tab } from 'vant';
+Vue.use(Tabs).use(Tab);
+import 'vant/lib/index.css';
+
 Vue.config.productionTip = false
 
 //导入格式化时间插件
