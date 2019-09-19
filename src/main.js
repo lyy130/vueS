@@ -25,8 +25,10 @@ import './assets/dist/css/icons-extra.css' //注意，此处样式要单独引�
 // Vue.prototype.mui = mui
 
 //vant引入
-import { Tabs, Tab } from 'vant';
+import { Tabs, Tab, Lazyload } from 'vant';
 Vue.use(Tabs).use(Tab);
+// options 为可选参数，无则不传
+Vue.use(Lazyload);
 import 'vant/lib/index.css';
 
 Vue.config.productionTip = false
