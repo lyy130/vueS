@@ -107,13 +107,13 @@
 </script>
 
 <style scoped lang="less">
-  @bgc1 :red;
+  /*@bgc1 :red;
   @bgc2 :blue;
-  @bgc3 :pink;
+  @bgc3 :pink;*/
 .mint-swipe{
   height: 200px;
   .mint-swipe-item{
-    &:nth-of-type(1){
+   /* &:nth-of-type(1){
       background: @bgc1;
     }
     &:nth-of-type(2){
@@ -121,7 +121,7 @@
     }
     &:nth-of-type(3){
       background: @bgc3;
-    }
+    }*/
     img{
       width: 100%;
       height: 100%;

@@ -5,7 +5,14 @@
           <div class="tab-title" slot="title" @click="getPhotoListByCateId(item.id)">{{ item.title }}</div>
 <!--          <div class="tab-content">{{ item.content }}</div>-->
         </van-tab>
-        <img v-for="item in list" v-lazy="item.img_url" :key="item.id" >
+        <div v-for="item in list" :key="item.id" class="lazy_box">
+          <img  v-lazy="item.img_url">
+          <div>
+            <h4>{{item.title}}</h4>
+            <p v-html="item.content" class="content"></p>
+          </div>
+        </div>
+
       </van-tabs>
     </div>
 </template>
@@ -53,6 +60,40 @@
     }
     .van-tabs__line{
       background-color: transparent;
+    }
+  }
+  .van-tabs__content{
+    img{
+      width: 100%;
+      height: auto;
+    }
+    .lazy_box{
+      position: relative;
+      div{
+        position: absolute;
+        bottom: 5px;
+        background: black;
+        opacity: 0.6;
+        padding: 6px 5px 6px 5px;
+        h4{
+          font-size: 15px;
+          color: white;
+        }
+        .content{
+          color: white;
+          overflow: hidden;
+          max-height: 100px;
+          margin: 0;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp:4 ;
+          -webkit-box-orient: vertical;
+          p,span{
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
     }
   }
 </style>
