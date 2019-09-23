@@ -31,6 +31,10 @@ Vue.use(Tabs).use(Tab);
 Vue.use(Lazyload);
 import 'vant/lib/index.css';
 
+// 图片预览（vant）
+// import { ImagePreview } from 'vant';                    /******************************************放在这不行(单独引入)******************************************/
+// Vue.use(ImagePreview);
+
 Vue.config.productionTip = false
 
 //导入格式化时间插件

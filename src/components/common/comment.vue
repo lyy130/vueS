@@ -1,6 +1,7 @@
 <template>
     <div>
       <h4>发表评论</h4>
+      <hr>
       <textarea  class="pinlun" name="" id="" cols="20" rows="10" placeholder="请输入要BB的内容(最多20个字)" v-model="msg"></textarea>
       <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
       <ul class="comment">

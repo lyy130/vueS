@@ -5,13 +5,13 @@
           <div class="tab-title" slot="title" @click="getPhotoListByCateId(item.id)">{{ item.title }}</div>
 <!--          <div class="tab-content">{{ item.content }}</div>-->
         </van-tab>
-        <div v-for="item in list" :key="item.id" class="lazy_box">
+        <router-link v-for="item in list" :key="item.id" class="lazy_box" tag="div" :to="'/home/photoinfo/' + item.id">
           <img  v-lazy="item.img_url">
           <div>
             <h4>{{item.title}}</h4>
             <p v-html="item.content" class="content"></p>
           </div>
-        </div>
+        </router-link>
 
       </van-tabs>
     </div>
