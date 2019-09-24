@@ -1,7 +1,23 @@
 <template>
     <div>
       <ul class="goods-list">
-        <li v-for="item in goodslist">
+<!--        <router-link v-for="item in goodslist" :to="'/home/goodsinfo/' + item.id" tag="li">-->
+<!--          <div class="img-box">-->
+<!--            <img :src="item.img_url" alt="">-->
+<!--            <h4>{{item.title}}</h4>-->
+<!--          </div>-->
+<!--          <div class="detain">-->
+<!--            <div class="price">-->
+<!--              <span class="new-price">￥{{item.sell_price}}</span>-->
+<!--              <span class="old-price">￥{{item.market_price}}</span>-->
+<!--            </div>-->
+<!--            <div class="mai">-->
+<!--              <span>热卖中</span>-->
+<!--              <span>剩{{item.stock_quantity}}件</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </router-link>-->
+        <li v-for="item in goodslist" :to="'/home/goodsinfo/' + item.id" @click="getgoodsindo(item.id)">
           <div class="img-box">
             <img :src="item.img_url" alt="">
             <h4>{{item.title}}</h4>
@@ -18,6 +34,7 @@
           </div>
         </li>
       </ul>
+      <mt-button type="danger" size="large" @click="getGoodsMore">加载更多</mt-button>
     </div>
 </template>
 
@@ -42,7 +59,16 @@
                   this.goodslist = this.goodslist.concat(res.data.message);
               }
             })
-          }
+          },
+        // 加载更多
+        getGoodsMore(){
+            this.pageIndex++;
+            this.getGoodsList();
+        },
+        // 实现编程式导航
+        getgoodsindo(id){
+            this.$router.push({path:'goodsinfo/' + id})
+        }
       }
     }
 </script>
@@ -54,10 +80,11 @@
     width: 97%;
     margin: 0 auto;
     margin-top: 6px;
+    margin-bottom: 16px;
     background: #EDEEEC;
     box-shadow: 0 0 3px 1px #EDEEEC;
     li{
-      width: 47.4%;
+      width: 47%;
       box-shadow: 0 0 3px 1px #c9c9c9;
       margin-right: 20.7px;
       box-sizing: border-box;
