@@ -1,7 +1,7 @@
 <template>
     <div>
       <van-swipe :autoplay="3000">
-        <van-swipe-item v-for="(image, index) in images" :key="index">
+        <van-swipe-item v-for="(image, index) in lunbotu" :key="index">
           <img v-lazy="image" />
         </van-swipe-item>
       </van-swipe>
@@ -16,16 +16,22 @@
         name: "swiper",
         data() {
           return {
-            images: [
-              'https://img.yzcdn.cn/vant/apple-1.jpg',
-              'https://img.yzcdn.cn/vant/apple-2.jpg'
-            ]
+            // images: [
+            //   'https://img.yzcdn.cn/vant/apple-1.jpg',
+            //   'https://img.yzcdn.cn/vant/apple-2.jpg'
+            // ]
           }
         },
-      // props:["lunbotu"]
+      props:["lunbotu"]
     }
 </script>
 
-<style scoped>
-
+<style lang="less">
+  .van-swipe{
+    height: 200px;
+    text-align: center;
+    img{
+      height: 100%;
+    }
+  }
 </style>

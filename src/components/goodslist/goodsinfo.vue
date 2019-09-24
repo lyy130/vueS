@@ -1,9 +1,9 @@
 <template>
     <div>
       <div class="panel1">
-        <van-panel title="标题" desc="描述信息" status="状态">
+        <van-panel title="标题" desc="" status="">
           <div>
-            <swiper-box></swiper-box>
+            <swiper-box :lunbotu="lunbotu"></swiper-box>
           </div>
           <div slot="footer">
             <van-button size="small">按钮</van-button>
