@@ -39,13 +39,6 @@
               this.photoinfo = res.data.message[0];
             }
           })
-        },
-        getThumbs(){                       //获取缩略图
-          this.$axios.get('api/getthumimages' + this.id).then(res => {
-            if(res.data.status ===0) {
-
-            }
-          })
         }
       },
       components:{

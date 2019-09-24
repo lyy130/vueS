@@ -13,10 +13,10 @@
   import { ImagePreview } from 'vant';
   Vue.use(ImagePreview);
   const images = [
-    'https://img.yzcdn.cn/vant/apple-1.jpg',
-    'https://img.yzcdn.cn/vant/apple-2.jpg',
-    'https://img.yzcdn.cn/vant/apple-3.jpg',
-    'https://img.yzcdn.cn/vant/apple-4.jpg'
+    // 'https://img.yzcdn.cn/vant/apple-1.jpg',
+    // 'https://img.yzcdn.cn/vant/apple-2.jpg',
+    // 'https://img.yzcdn.cn/vant/apple-3.jpg',
+    // 'https://img.yzcdn.cn/vant/apple-4.jpg'
   ];
   export default {
     data() {
@@ -24,9 +24,12 @@
         show: false,
         images,
         index: 0,
+        photo:[]
       };
     },
-
+    created(){
+      this.getThumbs();
+    },
     methods: {
       // componentCall() {
       //   this.show = true;
@@ -35,10 +38,22 @@
       onChange(index) {
         this.index = index;
       },
-
+      getThumbs(){                       //获取缩略图
+        this.$axios.get('api/getthumimages/' + this.id).then(res => {
+          if(res.data.status ===0) {
+            console.log(res.data);
+            this.photo = res.data.message;
+            console.log(this.photo);
+            for(var i=0;i<this.photo.length;i++){
+              this.images.push(this.photo[i].src)
+            }
+            console.log(this.images)
+          }
+        })
+      },
       showImagePreview(position, timer) {
         const instance = ImagePreview({
-          images,
+          images:this.images,
           lazyLoad: true,
           swipeDuration: 300,
           asyncClose: !!timer,
@@ -51,7 +66,8 @@
           }, timer);
         }
       }
-    }
+    },
+    props:["id"]
   }
 </script>
 
