@@ -25,11 +25,12 @@ import './assets/dist/css/icons-extra.css' //注意，此处样式要单独引�
 // Vue.prototype.mui = mui
 
 //vant引入
-import { Tabs, Tab, Lazyload, Panel } from 'vant';
-Vue.use(Tabs).use(Tab);
+import { Tabs, Tab, Lazyload, Panel, Stepper } from 'vant';
+Vue.use(Tabs).use(Tab);   //缩略图
 // options 为可选参数，无则不传
-Vue.use(Lazyload);
-Vue.use(Panel);
+Vue.use(Lazyload);      //懒加载
+Vue.use(Panel);        //带有标题的面板
+Vue.use(Stepper);     //商品购买数量加号    步进器
 import 'vant/lib/index.css';
 
 // 图片预览（vant）

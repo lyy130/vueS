@@ -11,6 +11,8 @@ import photolist from '@/components/photolist/photolist'
 import photoinfo from '@/components/photolist/photoinfo'
 import goodslist from '@/components/goodslist/goodslist'
 import goodsinfo from '@/components/goodslist/goodsinfo'
+import goodsdesc from '@/components/goodslist/goodsdesc'
+import goodscomment from '@/components/goodslist/goodscomment'
 // import home from '@/components/tabar/Home.vue'   /* 导入组件包*/
 
 
@@ -28,7 +30,9 @@ export default new Router({                     /* 创建路由对象，并将�
     {path:'/home/photolist',component:photolist},
     {path:'/home/photoinfo/:id',component:photoinfo},
     {path:'/home/goodslist/',component:goodslist},
-    {path:'/home/goodsinfo/:id',component:goodsinfo}
+    {path:'/home/goodsinfo/:id',component:goodsinfo},
+    {path:'/home/goodsdesc/:id',component:goodsdesc},
+    {path:'/home/goodscomment/:id',component:goodscomment}
   ],
   linkActiveClass:'mui-active'  //覆盖默认的路由高亮的类
 })
