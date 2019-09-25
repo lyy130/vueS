@@ -17,7 +17,7 @@
 <!--            </div>-->
 <!--          </div>-->
 <!--        </router-link>-->
-        <li v-for="item in goodslist" :to="'/home/goodsinfo/' + item.id" @click="getgoodsindo(item.id)">
+        <li v-for="item in goodslist" :to="'/home/goodsinfo/' + item.id" @click="getgoodsindo(item.id)" :key="item.id">
           <div class="img-box">
             <img :src="item.img_url" alt="">
             <h4>{{item.title}}</h4>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+  import {Toast} from  'mint-ui'
     export default {
         name: "goodslist",
       data(){
@@ -56,6 +57,7 @@
             this.$axios.get('api/getgoods?pageindex=' + this.pageIndex).then(res => {
               if(res.data.status ===0) {
                 console.log(res.data);
+                Toast("加载成功。。。");
                   this.goodslist = this.goodslist.concat(res.data.message);
               }
             })
@@ -84,9 +86,9 @@
     background: #EDEEEC;
     box-shadow: 0 0 3px 1px #EDEEEC;
     li{
-      width: 47%;
+      width: 47.5%;
       box-shadow: 0 0 3px 1px #c9c9c9;
-      margin-right: 20.7px;
+      margin-right: 5%;
       box-sizing: border-box;
       margin-top: 10px;
       &:nth-of-type(1),&:nth-of-type(2){

@@ -3,7 +3,7 @@
       <div class="panel1">
         <van-panel title="标题" desc="" status="">
           <div>
-            <swiper-box :lunbotu="lunbotu"></swiper-box>
+            <swiper-box :lunbotuList="lunbotu"></swiper-box>
           </div>
           <div slot="footer">
             <van-button size="small">按钮</van-button>
@@ -27,6 +27,7 @@
           return{
             id:this.$route.params.id,
             lunbotu:[],
+            isW100:false
           }
       },
       created(){
@@ -36,7 +37,11 @@
           getLunbotu(){
             this.$axios.get('api/getthumimages/' + this.id).then(res => {
               if(res.data.status ===0) {
-                this.lunbotu = res.data.message;
+                res.data.message.forEach(item => {
+                  // item.img = item.src;
+                  console.log(item)
+                  this.lunbotu.push(item.src);
+                })
               }
             })
           }

@@ -1,8 +1,8 @@
 <template>
     <div>
       <van-swipe :autoplay="3000">
-        <van-swipe-item v-for="(image, index) in lunbotu" :key="index">
-          <img v-lazy="image" />
+        <van-swipe-item v-for="(image, index) in lunbotuList" :key="index">
+          <img v-lazy="image" :class="{isW100}"/>
         </van-swipe-item>
       </van-swipe>
     </div>
@@ -16,13 +16,16 @@
         name: "swiper",
         data() {
           return {
-            // images: [
-            //   'https://img.yzcdn.cn/vant/apple-1.jpg',
-            //   'https://img.yzcdn.cn/vant/apple-2.jpg'
-            // ]
+           // img:this.img1
           }
         },
-      props:["lunbotu"]
+      created(){
+
+      },
+      methods:{
+
+      },
+      props:["lunbotuList","isW100"]
     }
 </script>
 
@@ -33,5 +36,8 @@
     img{
       height: 100%;
     }
+  }
+  .isW100{
+    width: 100%;                       //通过动态绑定class的方式添加类
   }
 </style>
