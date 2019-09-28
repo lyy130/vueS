@@ -1,9 +1,12 @@
 <template>
     <div>
 <!--      //加入购物车小球-->
-      <transitoin>
-        <div class="ball" v-if="ballFlag"></div>
-      </transitoin>
+      <transition
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @after-enter="afterEnter">
+        <div class="ball" v-show="ballFlag" ref="ball"></div>
+      </transition>
 
 <!--      商品轮播区域-->
       <div class="panel1">
@@ -29,7 +32,7 @@
               </div>
               <div>
                 <span style="display: inline-block;margin-top: 8px;vertical-align: middle;font-size: 12px">购买数量:</span>
-                <van-stepper v-model="value" min="1" max="8" integer/>
+                <van-stepper v-model="value" min="1" :max="goodsinfo.stock_quantity" integer/>
               </div>
               <van-button size="small" type="info">立即购买</van-button>
               <van-button size="small" type="danger" @click="goshop">加入购物车</van-button>
@@ -76,7 +79,7 @@
             isW100:false,
             value: 1,
             goodsinfo:{},
-            ballFlag:true
+            ballFlag: false, // 控制小球的隐藏和显示的标识符
           }
       },
       created(){
@@ -109,7 +112,47 @@
           this.$router.push({path:'/home/goodscomment/'+ id});
         },
         goshop(){
-            this.ballFlag = !this.ballFlag;
+          this.ballFlag = !this.ballFlag;
+          // 先拼接一个保存到store中商品数据
+          var goodssp = {id:this.id,count:this.value,price:this.goodsinfo.sell_price,selected:true}
+          // this.ballFlag = !this.ballFlag;
+          this.$store.commit('increment',goodssp);
+          console.log(goodssp)
+        },
+        beforeEnter(el) {
+          el.offsetWidth;
+          el.style.transform = "translate(0, 0)";
+          el.style.display = "block";
+          el.style.opacity = "1";
+        },
+        enter(el, done){
+          el.offsetWidth;
+          el.style.display = "block";
+          el.style.opacity = "1";
+          // el.style.transform = "translate(150px, 450px)"
+          el.style.transition = "all 1s cubic-bezier(.4,-0.3,1,.68)"
+
+          // 经过分析：先得出购物车徽标的坐标，然后在得到小球的坐标，然后去横纵坐标差值，不管分辨率以及滑动，始终得到的是差值
+          //               获取页面距离：domObject.getBoundingClientRect()
+
+
+          //获取小球的在页面中的距离/
+          const ballPosition = this.$refs.ball.getBoundingClientRect();
+          // 由于购物车导航栏属于父组件，用$ref拿不到，可以通过父子组件传值，但麻烦，如果只是简单的业务逻辑不涉及到数据，可以使用dom
+          const badgePosition = document.getElementById('badge').getBoundingClientRect();
+
+          const xDist = badgePosition.left-ballPosition.left;
+          const yDist = badgePosition.top-ballPosition.top;
+
+          el.style.transform = `translate(${xDist}px,${yDist}px)`;
+          done()
+        },
+        afterEnter(el){
+          el.offsetWidth;
+          this.ballFlag = !this.ballFlag;
+        },
+        step1(){
+          this.$refs.step1.val()
         }
       },
       components:{
@@ -194,10 +237,11 @@
       height: 20px;
       background: red;
       position: absolute;
-      z-index: 1000;
+      z-index: 99;
       top: 437px;
       left: 108px;
       border-radius: 50%;
+      /*transform: translate(128px, 181px);*/                       /*  先测试小球位置，然后移动到钩子中*/
     }
   }
 
